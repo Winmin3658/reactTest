@@ -22,7 +22,7 @@ function repeat(count, callback) {
 function repeat2(count, callback) {
     for (let idx = 1; idx <= count; idx++) {
         let result = callback(idx, idx);
-        console.log(`result = #{result}`);
+        console.log(`result = ${result}`);
     }
 }
 
