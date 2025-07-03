@@ -1,0 +1,24 @@
+{
+  "name": "section03",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Winmin3658/reactTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Winmin3658/reactTest/issues"
+  },
+  "homepage": "https://github.com/Winmin3658/reactTest#readme",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "randomcolor": "^0.6.2"
+  }
+}
