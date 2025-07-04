@@ -1,12 +1,10 @@
-import {useState} from 'react';
-import Register from './components/Register';
+import HookExam from './components/HookExam';
 
-// Bulb component(전구)
 export default function App( ) {
   
   return (
     <>
-      <Register />
+      <HookExam />
     </>
   )
 }
