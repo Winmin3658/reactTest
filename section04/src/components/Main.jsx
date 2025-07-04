@@ -1,7 +1,19 @@
+import "./Main.css"
+import Button from "./Button";
+
 export default function Main() {
-return (
-  <>
-  <main><h1>메인 영역</h1></main>
-  </>
-)
+  const buttonProps = {
+    text: 'mail',
+    color: 'red'
+  }
+    return (  <>
+      <main>
+        <Button {...buttonProps}/>
+        <Button text={'학급'} color={'blue'}/>
+        <Button text={'메일'} >
+          <h2>자식요소</h2>
+        </Button>
+      </main>
+    </>);
+
 }
