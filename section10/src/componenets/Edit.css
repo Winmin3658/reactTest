@@ -1,0 +1,24 @@
+.Edit {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.Edit input {
+    flex: 1;
+    border: 1px solid rgb(225, 217, 217);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.Edit button {
+    background-color: rgb(186, 186, 244);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}

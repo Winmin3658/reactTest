@@ -1,0 +1,32 @@
+.ListItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px dotted black;
+}
+
+.ListItem input {
+    width: 40px;
+}
+
+.ListItem > .content {
+    flex: 1;
+}
+
+.ListItem > .date {
+    font-size: 14px;
+    color: rgb(130, 149, 142);
+}
+
+.ListItem > button {
+    cursor: pointer;
+    color: gray;
+    font-size: 14px;
+    border: 1px dotted black;
+    padding: 3px 10px;
+    border: 5px;
+}
