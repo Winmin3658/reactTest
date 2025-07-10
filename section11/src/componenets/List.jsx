@@ -1,8 +1,10 @@
 import './List.css';
-import ListItem from '../../../section08/src/componenets/ListItem';
-import {useState, useMemo} from 'react';
+import ListItem from './ListItem';
+import {useState, useMemo, useContext} from 'react';
+import { TodoStateContext } from '../App';
 
-const List = ({todos, onUpdate, onDelete}) => {
+const List = () => {
+    const {todos} = useContext(TodoStateContext);
     const [search, setSearch] = useState("");
 
     const onChangeInput = (e) => {
@@ -26,7 +28,7 @@ const List = ({todos, onUpdate, onDelete}) => {
     
 
     const { totalCount, doneCount, notDoneCount } = useMemo(() => {
-        console.log('useMemo 최적화 되고 있어요');
+        // console.log('useMemo 최적화 되고 있어요');
         const totalCount = todos.length;
         const doneCount = todos.filter((data) => data.isDone).length;
         const notDoneCount = totalCount - doneCount;
@@ -44,7 +46,7 @@ const List = ({todos, onUpdate, onDelete}) => {
             </div>
             <input value={search} placeholder="검색어를 입력하세요" onChange={onChangeInput}/>
             <div className="todos_wrapper">
-                {filterTodos.map((data) => {return <ListItem key={data.id} {...data} onUpdate={onUpdate} onDelete={onDelete}/>})}
+                {filterTodos.map((data) => {return <ListItem key={data.id} {...data} />})}
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import Edit from './componenets/Edit';
 import List from './componenets/List';
 import Exam from './componenets/Exam';
 import './App.css';
-import {useState, useRef, useReducer, useCallback} from 'react';
+import {useState, useRef, useReducer, useCallback, createContext, useMemo} from 'react';
 
 const mockData = [
   {id: 0, isDone: false, content: 'react 공부하기', date: new Date().getTime()},
@@ -23,6 +23,10 @@ function reducer(todos, action) {
     default : return todos;
   };
 }
+
+// createContext() 생성해서 export 시킨다(context: 자바(static 유사), 공동으로 사용되는 장소)
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 
 function App() {
   // 상태 관리(전체 데이터 관리)
@@ -87,13 +91,21 @@ function App() {
     // );
   }; */
 
+  // 딱 한 번만 발생하도록 처리(useContext 사용)
+  const memorizeddispatch = useMemo(()=>{
+    return { onInsert, onUpdate, onDelete};
+  }, []);
+
   return (
     <>
       <div className='App'>
         <Header />
-        <Exam />
+        <TodoStateContext.Provider value={{todos}}>
+        <TodoDispatchContext.Provider value={memorizeddispatch}>
         <Edit onInsert = {onInsert}/>
         <List todos = {todos} onUpdate={onUpdate} onDelete={onDelete} />
+        </TodoDispatchContext.Provider>
+        </TodoStateContext.Provider>
       </div>
     </>
   )
