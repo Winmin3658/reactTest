@@ -1,5 +1,5 @@
 import './List.css';
-import ListItem from './ListItem';
+import ListItem from '../../../section10/src/componenets/ListItem';
 import {useState} from 'react';
 
 const List = ({todos, onUpdate, onDelete}) => {
