@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getOne } from "../api/todoApi";
+import { Container } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 const initState = {
     tno: 0,
@@ -7,49 +9,62 @@ const initState = {
     writer: "",
     dueDate: null,
     complete: false,
-}
+};
 
 const ReadComponent = ({ tno }) => {
     const [todo, setTodo] = useState(initState);
 
     useEffect(() => {
         getOne(tno).then((data) => {
-            return setTodo(data);
+            setTodo(data);
         });
     }, [tno]);
 
+    // console.log(todo = ${ todo });
     return (
         <>
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">tno</label>
-                <div class="col-sm-10">
-                    {todo.tno}
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">writer</label>
-                <div class="col-sm-10">
-                    {todo.writer}
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">title</label>
-                <div class="col-sm-10">
-                    {todo.title}
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Due Date</label>
-                <div class="col-sm-10">
-                    {todo.dueDate}
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">complete</label>
-                <div class="col-sm-10">
-                    {todo.complete}
-                </div>
-            </div>
+            <Container className="p-5">
+                <Form>
+                    <Form.Group>
+                        <Form.Label>TNO</Form.Label>
+                        <Form.Control
+                            defaultValue={tno}
+                            type="text"
+                            placeholder="Enter no"
+                            disabled
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>WRITER</Form.Label>
+                        <Form.Control
+                            defaultValue={todo.writer}
+                            type="text"
+                            placeholder="Enter writer"
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>TITLE</Form.Label>
+                        <Form.Control
+                            type="text"
+                            defaultValue={todo.title}
+                            placeholder="Enter title"
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>DATE</Form.Label>
+                        <Form.Control defaultValue={todo.dueDate} type="text" disabled />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>COMPLETE</Form.Label>
+                        <Form.Control
+                            value={todo.complete ? "Completed" : "Not Yet"}
+                            type="text"
+                        />
+                    </Form.Group>
+                </Form>
+            </Container>
         </>
     );
 };

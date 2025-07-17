@@ -11,10 +11,7 @@ const ListPage = () => {
     return (
         <Container>
             <Header />
-            <div className="d-grid mt-3">
-                {`Todo List page components page: ${page} size: ${size}`}
-                <ListComponent />
-            </div>
+            <ListComponent />
         </Container>
     );
 };

@@ -10,20 +10,32 @@ const prefix = `${API_SERVER_HOST}/api/todo`;
 export const getOne = async (tno) => {
     const result = await axios.get(`${prefix}/${tno}`);
     return result.data;
-};
+}
 
 // 2. 페이징리스트
 // 선택 http://localhost:8080/api/todo/list?page=2&size=10
 export const getList = async (pageParam) => {
     const { page, size } = pageParam;
-    const result = await axios.get(`${prefix}/list`);
+    const result = await axios.get(`${prefix}/list`, {
+        params: { page: page, size: size },
+    });
+    return result.data;
 };
-// 3. 선택
+
+// 3. 삽입
+export const postAdd = async (todo) => {
+    const result = await axios.post(`${prefix}/`, todo);
+    return result.data;
+};
+
 // 4. 수정
+export const putOne = async (todo) => {
+    const result = await axios.put(`${prefix}/${todo.tno}`, todo)
+    return result.data
+}
+
 // 5. 삭제
-
-const TodoApi = () => {
-
-};
-
-export default TodoApi;
+export const deleteOne = async (tno) => {
+    const result = await axios.delete(`${prefix}/${tno}`);
+    return result.data;
+}
