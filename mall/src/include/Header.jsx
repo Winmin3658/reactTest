@@ -19,8 +19,8 @@ export default function Header() {
                         <NavDropdown title="TODO" className="bg-body-primary" bg="primary">
                             <NavDropdown.Item href="/todo/list">LIST</NavDropdown.Item>
                             <NavDropdown.Item href="/todo/add">ADD</NavDropdown.Item>
-                            <NavDropdown.Item href="/todo/read/3">READ</NavDropdown.Item>
-                            <NavDropdown.Item href="/todo/modify/5">MODIFY</NavDropdown.Item>
+                            {/* <NavDropdown.Item href="/todo/read/3">READ</NavDropdown.Item>
+                            <NavDropdown.Item href="/todo/modify/5">MODIFY</NavDropdown.Item> */}
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">예비용</NavDropdown.Item>
                         </NavDropdown>
