@@ -22,7 +22,6 @@ const ListComponent = () => {
     const [serverData, setServerData] = useState(initState);
     console.log("DTO LIST", serverData.dtoList);
 
-
     useEffect(() => {
         getList({ page, size }).then(data => {
             console.log(data)

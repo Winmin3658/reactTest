@@ -1,12 +1,19 @@
 import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Loading from '../pages/Loading';
+// root page
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const MainPage = lazy(() => import('../pages/MainPage'));
+// todo page
 const ListPage = lazy(() => import('../pages/todo/ListPage'));
 const AddPage = lazy(() => import('../pages/todo/AddPage'));
 const ReadPage = lazy(() => import('../pages/todo/ReadPage'));
 const ModifyPage = lazy(() => import('../pages/todo/ModifyPage'));
+// product page
+const ProductListPage = lazy(() => import('../pages/product/ListPage'));
+const ProductAddPage = lazy(() => import('../pages/product/AddPage'));
+const ProductReadPage = lazy(() => import('../pages/product/ReadPage'));
+const ProductModifyPage = lazy(() => import('../pages/product/ModifyPage'));
 const root = createBrowserRouter([
     {
         path: '/',
@@ -24,6 +31,7 @@ const root = createBrowserRouter([
             </Suspense>
         ),
     },
+    // todo 경로
     {
         path: '/todo/list',
         element: (
@@ -53,6 +61,39 @@ const root = createBrowserRouter([
         element: (
             <Suspense fallback={<Loading />}>
                 <ModifyPage />
+            </Suspense>
+        ),
+    },
+    // product 경로
+    {
+        path: '/product/list',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <ProductListPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/product/add',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <ProductAddPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/product/read/:pno',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <ProductReadPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/product/modify/:pno',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <ProductModifyPage />
             </Suspense>
         ),
     },

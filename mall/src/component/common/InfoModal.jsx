@@ -5,8 +5,10 @@ const InfoModal = ({ show, onHide, title, content, callbackFn }) => {
     return (
         <Container>
             <Modal show={show} onHide={onHide} size="sm" aria-labelledby="contained-modal-title-vcenter" centered >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
+                <Modal.Header>
+                    <Modal.Title id="contained-modal-title-vcenter"
+                        className="d-flex justify-content-center"
+                    >{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
