@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap';
 import Header from './../../include/Header';
-import ListComponent from '../../component/ListComponent';
+import ListComponent from '../../component/todo/ListComponent';
 import { useSearchParams } from 'react-router';
 
 const ListPage = () => {
