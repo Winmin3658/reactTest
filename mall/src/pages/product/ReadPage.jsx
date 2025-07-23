@@ -6,7 +6,6 @@ import useCustomMove from "../../hooks/useCustomMove";
 
 const ReadPage = () => {
     const { pno } = useParams();
-    const { moveToList, moveToModify } = useCustomMove();
 
     return (
         <Container>
