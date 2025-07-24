@@ -14,6 +14,10 @@ const ProductListPage = lazy(() => import('../pages/product/ListPage'));
 const ProductAddPage = lazy(() => import('../pages/product/AddPage'));
 const ProductReadPage = lazy(() => import('../pages/product/ReadPage'));
 const ProductModifyPage = lazy(() => import('../pages/product/ModifyPage'));
+// member page
+const LoginPage = lazy(() => import('../pages/member/LoginPage'));
+const LogoutPage = lazy(() => import('../pages/member/LogoutPage'));
+
 const root = createBrowserRouter([
     {
         path: '/',
@@ -94,6 +98,23 @@ const root = createBrowserRouter([
         element: (
             <Suspense fallback={<Loading />}>
                 <ProductModifyPage />
+            </Suspense>
+        ),
+    },
+    // member 경로
+    {
+        path: '/member/login',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <LoginPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/member/logout',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <LogoutPage />
             </Suspense>
         ),
     },
