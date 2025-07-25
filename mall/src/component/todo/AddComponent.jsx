@@ -1,8 +1,8 @@
 import { useState, React } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import useCustomMove from "../hooks/useCustomMove";
-import { postAdd } from "../api/todoApi";
-import InfoModal from "./common/InfoModal";
+import useCustomMove from "../../hooks/useCustomMove";
+import { postAdd } from "../../api/todoApi";
+import InfoModal from "../common/InfoModal";
 
 const initState = { title: "", writer: "", dueDate: "" };
 

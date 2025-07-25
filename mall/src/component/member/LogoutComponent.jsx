@@ -5,13 +5,21 @@ import Card from 'react-bootstrap/Card';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../slices/loginSlice';
 import { useNavigate } from 'react-router-dom';
-export default function LogoutComponent() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+import useCustomLogin from "../../hooks/useCustomLogin";
+
+const LogoutComponent = () => {
+    //const navigate = useNavigate();
+    //const dispatch = useDispatch();
+    /*const handleClickLogout = () => {
+    dispatch(logout());
+    navigate({ pathname: '/' }, { replace: true });
+    };*/
+    const { doLogout, moveToPath } = useCustomLogin()
     const handleClickLogout = () => {
-        dispatch(logout());
-        navigate({ pathname: '/' }, { replace: true });
-    };
+        doLogout()
+        alert("로그아웃되었습니다.")
+        moveToPath("/")
+    }
     return (
         <Container className="p-5">
             <Card className="text-center">
@@ -28,3 +36,4 @@ export default function LogoutComponent() {
         </Container>
     );
 }
+export default LogoutComponent;

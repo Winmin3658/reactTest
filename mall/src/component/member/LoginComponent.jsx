@@ -3,14 +3,19 @@ import { FloatingLabel, Form, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../slices/loginSlice';
+import { loginPostAsync } from "../../slices/loginSlice"
+import useCustomLogin from "../../hooks/useCustomLogin"
 
 const initState = {
     email: '',
     pw: '',
 };
+
 export default function LoginComponent() {
     const [loginParam, setLoginParam] = useState({ ...initState });
+    const navigate = useNavigate()
     const dispatch = useDispatch()
+    const { doLogin, moveToPath } = useCustomLogin()
 
     const handleChange = (e) => {
         loginParam[e.target.name] = e.target.value;
@@ -19,9 +24,21 @@ export default function LoginComponent() {
 
     // 서버로 전송해서 username, password => access token => cookie 넣고 => loginSlice 금고(email: 로그인한 진짜 이메일)
     const handleClickLogin = (e) => {
-        dispatch(login(loginParam))
+        // 동기화 호출
+        // dispatch(login(loginParam))
+        // 비동기 호출
+        doLogin(loginParam)
+            // loginSlice 의 비동기 호출
+            .then(data => {
+                console.log(data)
+                if (data.error) {
+                    alert("이메일과 패스워드를 다시 확인하세요")
+                } else {
+                    alert("로그인 성공")
+                    moveToPath('/')
+                }
+            })
     };
-
 
     return (
         <>
