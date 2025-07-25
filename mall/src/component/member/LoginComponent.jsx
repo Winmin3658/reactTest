@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../slices/loginSlice';
 import { loginPostAsync } from "../../slices/loginSlice"
 import useCustomLogin from "../../hooks/useCustomLogin"
+import KakaoLoginComponent from './KakaoLoginComponent';
 
 const initState = {
     email: '',
@@ -66,6 +67,7 @@ export default function LoginComponent() {
                     로그인
                 </Button>
             </div>
+            <KakaoLoginComponent />
         </>
     );
 }
