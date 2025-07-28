@@ -1,16 +1,25 @@
 import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Loading from '../pages/Loading';
+// main
 const MainPage = lazy(() => import('../pages/MainPage'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
+
+// diary
 const ListPage = lazy(() => import('../pages/diary/ListPage'));
 const ReadPage = lazy(() => import('../pages/diary/ReadPage'));
 const AddPage = lazy(() => import('../pages/diary/AddPage'));
 const ModifyPage = lazy(() => import('../pages/diary/ModifyPage'));
+
+// product
 const ProductListPage = lazy(() => import('../pages/product/ListPage'));
 const ProductAddPage = lazy(() => import('../pages/product/AddPage'));
 const ProductReadPage = lazy(() => import('../pages/product/ReadPage'));
 const ProductModifyPage = lazy(() => import('../pages/product/ModifyPage'));
+
+// member
+const LoginPage = lazy(() => import('../pages/member/LoginPage'));
+const LogoutPage = lazy(() => import('../pages/member/LogoutPage'));
 
 const root = createBrowserRouter([
     {
@@ -29,6 +38,8 @@ const root = createBrowserRouter([
             </Suspense>
         ),
     },
+
+    // diary
     {
         path: '/diary/list',
         element: (
@@ -61,6 +72,8 @@ const root = createBrowserRouter([
             </Suspense>
         ),
     },
+
+    // product
     {
         path: '/product/list',
         element: (
@@ -90,6 +103,22 @@ const root = createBrowserRouter([
         element: (
             <Suspense fallback={<Loading />}>
                 <ProductModifyPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/member/login',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <LoginPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/member/logout',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <LogoutPage />
             </Suspense>
         ),
     },
