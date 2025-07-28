@@ -7,6 +7,10 @@ const ListPage = lazy(() => import('../pages/diary/ListPage'));
 const ReadPage = lazy(() => import('../pages/diary/ReadPage'));
 const AddPage = lazy(() => import('../pages/diary/AddPage'));
 const ModifyPage = lazy(() => import('../pages/diary/ModifyPage'));
+const ProductListPage = lazy(() => import('../pages/product/ListPage'));
+const ProductAddPage = lazy(() => import('../pages/product/AddPage'));
+const ProductReadPage = lazy(() => import('../pages/product/ReadPage'));
+const ProductModifyPage = lazy(() => import('../pages/product/ModifyPage'));
 
 const root = createBrowserRouter([
     {
@@ -54,6 +58,38 @@ const root = createBrowserRouter([
         element: (
             <Suspense fallback={<Loading />}>
                 <ModifyPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/product/list',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <ProductListPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/product/add',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <ProductAddPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/product/read/:pno',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <ProductReadPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/product/modify/:pno',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <ProductModifyPage />
             </Suspense>
         ),
     },
