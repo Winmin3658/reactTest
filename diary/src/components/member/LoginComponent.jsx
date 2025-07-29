@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginPostAsync } from "../../slices/loginSlice"
 import useCustomLogin from "../../hooks/useCustomLogin"
+import KakaoLoginComponent from './KakaoLoginComponent';
 
 const initState = {
     email: '',
@@ -59,6 +60,7 @@ export default function LoginComponent() {
                     로그인
                 </Button>
             </div>
+            <KakaoLoginComponent />
         </>
     );
 }
