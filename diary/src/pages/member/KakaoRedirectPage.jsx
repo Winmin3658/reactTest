@@ -26,7 +26,15 @@ const KakaoRedirectPage = () => {
                 } else {
                     moveToPath("/member/modify")
                 }
+            }).catch(error => {
+                console.error("Error getting member info with access token:", error);
+                // 에러 발생 시 로그인 페이지로 이동하거나 사용자에게 메시지 표시
+                moveToPath("/member/login");
             })
+        }).catch(error => {
+            console.error("Error getting access token:", error);
+            // 에러 발생 시 로그인 페이지로 이동하거나 사용자에게 메시지 표시
+            moveToPath("/member/login");
         })
     }, [authCode])
     return (

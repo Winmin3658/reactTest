@@ -13,7 +13,9 @@ export const postAdd = async (product) => {
 export const getList = async (pageParam) => {
     const { page, size } = pageParam;
     const res = await jwtAxios.get(`${host}/list`, {
-        params: { page: page, size: size },
+        params: { page, size },
+        // Authorization 없이 요청
+        withCredentials: true // 만약 쿠키 기반 인증이 필요한 경우
     });
     return res.data;
 };

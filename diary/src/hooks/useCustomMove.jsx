@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { createSearchParams, useNavigate, useSearchParams, } from 'react-router-dom';
+
 const getNum = (param, defaultValue) => {
     if (!param) {
         return defaultValue;
     }
     return parseInt(param);
 };
+
 const useCustomMove = () => {
     const navigate = useNavigate();
     const [refresh, setRefresh] = useState(false);

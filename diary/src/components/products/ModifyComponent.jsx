@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 import { Container, Card, Row, Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { deleteOne, getOne, putOne } from '../../api/productApi';
+import { deleteOne, getOne, putOne } from '../../api/productsApi';
 import FetchingModal from '../common/FetchingModal';
 import { API_SERVER_HOST } from '../../api/diaryApi';
 import useCustomMove from '../../hooks/useCustomMove';
-import ResultModal from '../common/ResultModal';
+import InfoModal from "../common/InfoModal"
 
 const initState = {
     pno: 0,
@@ -88,7 +88,7 @@ const ModifyComponent = ({ pno }) => {
         <Container className="p-5">
             {fetching ? <FetchingModal /> : <></>}
             {result ? (
-                <ResultModal
+                <InfoModal
                     title={`${result}`}
                     content={'정상적으로 처리되었습니다.'} //결과 모달창
                     callbackFn={closeModal}
@@ -128,15 +128,16 @@ const ModifyComponent = ({ pno }) => {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>DELETE</Form.Label>
-                    <Form.Select
-                        name="delFlag"
-                        value={product.delFlag ? '사용' : '삭제'}
-                        onChange={handleChangeProduct}
-                    >
-                        <option value={false}>사용</option>
-                        <option value={true}>삭제</option>
-                    </Form.Select>
+                    <Form.Label>공개 여부</Form.Label>
+                    <Form.Check
+                        type="switch"
+                        id="delFlag-switch"
+                        label={product.delFlag ? '비밀' : '공개'}
+                        checked={!product.delFlag} // delFlag가 false일 때 공개 (체크됨), true일 때 비밀 (체크 해제)
+                        onChange={(e) => {
+                            setProduct({ ...product, delFlag: !e.target.checked });
+                        }}
+                    />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Files</Form.Label>

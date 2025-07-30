@@ -12,6 +12,7 @@ const initState = {
 };
 const ReadComponent = ({ tno, moveToList, moveToModify }) => {
     const [diary, setDiary] = useState(initState);
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         getOne(tno).then((data) => {
@@ -38,6 +39,7 @@ const ReadComponent = ({ tno, moveToList, moveToModify }) => {
                         type="text"
                         value={diary.title}
                         placeholder="Enter title"
+                        readOnly
                     />
                 </Form.Group>
                 <Form.Group>
@@ -59,6 +61,7 @@ const ReadComponent = ({ tno, moveToList, moveToModify }) => {
                     <Form.Control
                         value={diary.complete ? 'Completed' : 'Not Yet'}
                         type="text"
+                        readOnly
                     />
                 </Form.Group>
             </Form>

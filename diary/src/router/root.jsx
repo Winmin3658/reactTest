@@ -22,6 +22,7 @@ const LoginPage = lazy(() => import('../pages/member/LoginPage'));
 const LogoutPage = lazy(() => import('../pages/member/LogoutPage'));
 const KakaoRedirect = lazy(() => import('../pages/member/KakaoRedirectPage'));
 const MemberModify = lazy(() => import('../pages/member/ModifyPage'));
+const MyPage = lazy(() => import('../pages/member/MyPage'));
 
 const root = createBrowserRouter([
     {
@@ -135,8 +136,16 @@ const root = createBrowserRouter([
     {
         path: '/member/modify',
         element: (
-            <Suspense fallback={Loading}>
+            <Suspense fallback={<Loading />}>
                 <MemberModify />
+            </Suspense>
+        ),
+    },
+    {
+        path: '/member/mypage',
+        element: (
+            <Suspense fallback={<Loading />}>
+                <MyPage />
             </Suspense>
         ),
     },

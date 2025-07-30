@@ -1,27 +1,37 @@
 import React, { useRef, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { postAdd } from "../../api/productsApi";
-import FetchingModal from "../common/FetchingModal";
-import ResultModal from "../common/ResultModal";
-import useCustomMove from "../../hooks/useCustomMove";
+import FetchingModal from '../common/FetchingModal';
+import InfoModal from '../common/InfoModal';
+import useCustomMove from '../../hooks/useCustomMove';
 
 const initState = { pname: '', pdesc: '', price: 0, files: [] };
 
 export default function AddComponent() {
     const [product, setProduct] = useState({ ...initState });
-    const uploadRef = useRef();
-    //FetchingModal 보이거나, 사라지게하는 flag역할
-    const [fetching, setFetching] = useState(false)
-    const [result, setResult] = useState(null)
+    // fetching 모달을 결정하는 state
+    const [fetching, setFetching] = useState(false);
+    // 모달창을 보여줄 정보 저장
+    const [result, setResult] = useState(false);
 
     const { moveToProductList } = useCustomMove();
 
+    const uploadRef = useRef(); //type =”file” 위치
     const handleChangeProduct = (e) => {
         product[e.target.name] = e.target.value;
         setProduct({ ...product });
     };
+
+    // 모달창을 close
+    const closeModal = () => {
+        setResult(null);
+        moveToProductList();
+    }
+    // 전송 버튼을 눌렀을 때 data Api server 전송(insert)
     const handleClickAdd = (e) => {
+        // 파일의 정보 [file1, file2]
         const files = uploadRef.current.files
+        // <form method="post" action="전송할 주소"> form 안에서 보내질 키값=value </form>
         const formData = new FormData()
         for (let i = 0; i < files.length; i++) {
             formData.append("files", files[i]);
@@ -30,28 +40,24 @@ export default function AddComponent() {
         formData.append("pname", product.pname)
         formData.append("pdesc", product.pdesc)
         formData.append("price", product.price)
-        console.log(formData)
-        setFetching(true)
-        postAdd(formData).then(data => {
-            setFetching(false)
-            setResult(data.result)
-        })
+        console.log(formData);
+        setFetching(true); // 페칭 모달 보이는 것
+        postAdd(formData).then((data) => {
+            setFetching(false);
+            console.log(data);
+            setResult(data.result);
+        });
     }
-    const closeModal = () => { //ResultModal 종료
-        setResult(null)
-        moveToProductList({ page: 1 }) //모달 창이 닫히면 이동
-    }
-
     return (
         <Container className="p-5">
-            {fetching ? <FetchingModal /> : <></>}
-            {result ?
-                <ResultModal title={'Product Add Result'}
-                    content={`${result}번 등록 완료`}
-                    callbackFn={closeModal}
-                />
-                : <></>
-            }
+            {fetching ? (<FetchingModal />) : (<></>)}
+            {result ? (<InfoModal
+                show={true}
+                title={`Product ADD RESULT`}
+                content={`${result} 등록 완료`}
+                callbackFn={closeModal}
+            />) : (<></>)}
+
             <Form>
                 <Form.Group className="mb-3">
                     <Form.Label>Product Name</Form.Label>
@@ -67,6 +73,7 @@ export default function AddComponent() {
                     <Form.Label>Product Description</Form.Label>
                     <Form.Control
                         name="pdesc"
+                        style={{ resize: "none" }}
                         value={product.pdesc}
                         as="textarea"
                         rows={4}
